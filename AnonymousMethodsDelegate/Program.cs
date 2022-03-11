@@ -13,7 +13,7 @@ namespace AnonymousMethodsDelegate
         {
             //GreetingsDelegate greetings = new GreetingsDelegate(Greetings);
 
-            GreetingsDelegate greet = (name) => 
+            GreetingsDelegate greet =  (name)  =>
             {
                 return $"hello {name}";
             };
