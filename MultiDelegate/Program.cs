@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MultiDelegate
 {
-    public delegate void RecDelegate(double x, double y);
+    public delegate double RecDelegate(double x, double y);
     internal class Program
     {
         static void Main(string[] args)
@@ -14,17 +14,23 @@ namespace MultiDelegate
             Program p = new Program();
             RecDelegate recDelegate = new RecDelegate(p.GetArea);
             recDelegate += p.GetPerimeter;
-            recDelegate.Invoke(12.55, 5.60);
-            //recDelegate(12.55, 5.60);
+            recDelegate += p.GetPerimeter;
+            recDelegate -= p.GetPerimeter;
+            recDelegate -= p.GetPerimeter;
+            recDelegate += p.GetArea;
 
+            recDelegate.Invoke(12.55, 5.60);
+            Console.WriteLine();
+            //recDelegate(12.55, 5.60);
+            Console.ReadLine();
         }
-        public void GetArea(double width,double height)
+        public double GetArea(double width,double height)
         {
-            Console.WriteLine( width * height);
+            return (width * height);
         }
-        public void GetPerimeter(double width, double height)
+        public double GetPerimeter(double width, double height)
         {
-            Console.WriteLine(2*(width+height));
+            return 2 * (width + height);
         }
     }
 }
